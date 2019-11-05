@@ -11,11 +11,14 @@ import (
 var svr = "http://localhost:8080"
 
 func main() {
-	start := time.Now()
-	//testInsert()
-	testReadAsync()
-	//testRead()
-	fmt.Println(time.Since(start))
+	for {
+		start := time.Now()
+		//testInsert()
+		testReadAsync()
+		//testRead()
+		fmt.Println(time.Since(start))
+		time.Sleep(60 * time.Second)
+	}
 }
 
 var userEntities = "users"
@@ -48,9 +51,9 @@ func testReadAsync() {
 		Entity: userEntities,
 		Comparisons: []query.Comparison{
 			query.Comparison{
-				Field:      "email",
-				Comparator: "gt",
-				Value:      "5",
+				Field:      "id",
+				Comparator: "lt",
+				Value:      "3",
 			},
 		},
 		Limit: 5000,
